@@ -27,6 +27,7 @@ const short tiltPin = 20;     //F1
 const short rotatePin = 21;   //F0
 const short movementPin = 19; //F4
 
+
 const short rightLimit = 6;   //D1 yellow/green
 const short leftLimit = 7;    //D2 yellow/orange
 
@@ -116,13 +117,13 @@ void loop()
     
     switch(results.value){
 
-    case 0x10EF0001:
+    case 0x10EFF807:
       moveToPos(1);
       break;
-    case 0x10EF0002:
+    case 0x10EF7887:
       moveToPos(2);
       break;
-    case 0x10EF0003:
+    case 0x10EF58A7:
       moveToPos(3);
       break;
     case 0x10EF0005:
