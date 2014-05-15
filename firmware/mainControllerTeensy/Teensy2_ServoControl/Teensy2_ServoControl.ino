@@ -27,13 +27,8 @@ const short tiltPin = 20;     //F1
 const short rotatePin = 21;   //F0
 const short movementPin = 19; //F4
 
-<<<<<<< HEAD
-const short rightLimit = 6;   //D1  yellow / green
-const short leftLimit = 7;    //D2  yellow / orange
-=======
 const short rightLimit = 6;   //D1 yellow/green
 const short leftLimit = 7;    //D2 yellow/orange
->>>>>>> 1e576c281cf2a06378aced0723914ae9b9047eeb
 
 IRrecv irrecv(RECV_PIN);
 decode_results results;
@@ -127,7 +122,7 @@ void loop()
     case 0x10EF0002:
       moveToPos(2);
       break;
-    case 0x10EF003:
+    case 0x10EF0003:
       moveToPos(3);
       break;
     case 0x10EF0005:
@@ -223,7 +218,6 @@ void loop()
     }
     
     irrecv.resume();
-    results
   }
 }
 
