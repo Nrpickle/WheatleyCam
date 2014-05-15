@@ -223,7 +223,6 @@ void loop()
     }
     
     irrecv.resume();
-    results
   }
 }
 
