@@ -27,8 +27,13 @@ const short tiltPin = 20;     //F1
 const short rotatePin = 21;   //F0
 const short movementPin = 19; //F4
 
+<<<<<<< HEAD
 const short rightLimit = 6;   //D1  yellow / green
 const short leftLimit = 7;    //D2  yellow / orange
+=======
+const short rightLimit = 6;   //D1 yellow/green
+const short leftLimit = 7;    //D2 yellow/orange
+>>>>>>> 1e576c281cf2a06378aced0723914ae9b9047eeb
 
 IRrecv irrecv(RECV_PIN);
 decode_results results;
@@ -113,7 +118,7 @@ void loop()
 
     Serial.println(results.value, HEX);
     
-    /*
+    
     switch(results.value){
 
     case 0x10EF0001:
@@ -216,8 +221,9 @@ void loop()
       rotateTo(170);
       break;
     }
-    */
+    
     irrecv.resume();
+    results
   }
 }
 
