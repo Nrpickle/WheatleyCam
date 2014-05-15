@@ -27,8 +27,8 @@ const short tiltPin = 20;     //F1
 const short rotatePin = 21;   //F0
 const short movementPin = 19; //F4
 
-const short rightLimit = 6;   //D1
-const short leftLimit = 7;    //D2
+const short rightLimit = 6;   //D1  yellow / green
+const short leftLimit = 7;    //D2  yellow / orange
 
 IRrecv irrecv(RECV_PIN);
 decode_results results;
