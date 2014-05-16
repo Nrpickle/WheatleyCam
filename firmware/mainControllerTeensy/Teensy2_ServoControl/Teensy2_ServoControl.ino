@@ -34,10 +34,8 @@ const short leftLimit = 7;    //D2 yellow/orange
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
-//Initial position values for sparkfun remote
-int initialPos = 1;
-int initialRotation = 90;
-int initialTilt = 90;
+//Amount of time to be private when using sparkfun remote (seconds);
+int privacyTime = 10;
 
 byte currentPos;
 int currentRotation = 90;
@@ -122,6 +120,7 @@ void loop()
     
     switch(results.value){
 
+    //Sparkfun remote0 cases
     case 0x10EFF807:
       moveToPos(1);
       break;
@@ -130,6 +129,24 @@ void loop()
       break;
     case 0x10EF58A7:
       moveToPos(3);
+      break;
+    case 0x10EFD827:
+      digitalWrite(PRIVATE_PIN, HIGH);
+      for(int i = 0; i < privacyTime; i++)
+        delay(1000);
+      digitalWrite(PRIVATE_PIN, LOW);
+      break;
+    case 0x10EF10EF:
+      rotateTo(currentRotation - 10);
+      break;
+    case 0x10EF807F:
+      rotateTo(currentRotation + 10);
+      break;
+    case 0x10EF00FF:
+      tiltTo(currentTilt - 10);
+      break;
+    case 0x10EFA05F:
+      tiltTo(currentTilt + 10);
       break;
       
       
