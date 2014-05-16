@@ -151,6 +151,10 @@ void loop()
     case 0x10EFA05F:
       tiltTo(currentTilt + 10);
       break;
+    case 0x10EF20DF
+      rotateTo(90);
+      tiltTo(90);
+      break;
       
       
     //Touch remote cases
