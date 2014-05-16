@@ -34,8 +34,11 @@ const short leftLimit = 7;    //D2 yellow/orange
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
-//Amount of time to be private when using sparkfun remote (seconds);
+//Amount of time to be private when using sparkfun remote (seconds)
 int privacyTime = 10;
+
+//Motor speed (difference from 94 stop position, so about at max right now)
+const int motorSpeed = 70;
 
 byte currentPos;
 int currentRotation = 90;
@@ -369,8 +372,9 @@ func: goRight
  desc: Moves Wheatley to the magnet to it's right. "Right" is as oriented
  	when the camera is facing forward. 
  */
+ 
 void goRight(){
-  movement.write(103); //Move right past the 'current' magnet
+  movement.write(94 + motorSpeed); //Move right past the 'current' magnet
   delay(1000);  
 
   //Light the led if the switch is activated *Probably not necessary*
@@ -379,11 +383,13 @@ void goRight(){
   else
     digitalWrite(led, HIGH);
 
-  movement.write(103);  //Move right until switch
+
+  //Prev 103
+  movement.write(170);  //Move right until switch
   delay(100);
   while(digitalRead(reedSwitch) == HIGH);  //Do nothing while the switch is high (active low)
 
-  movement.write(100);  //Slow down slightly
+  movement.write(94 + 6);  //Slow down slightly
   delay(100);
 
   movement.write(94);  //Stop
@@ -399,7 +405,7 @@ func: goLeft
  	when the camera is facing forward. 
  */
 void goLeft(){
-  movement.write(85);  //Move left past the 'current' magnet
+  movement.write(94 - motorSpeed);  //Move left past the 'current' magnet
   delay(1000);  
 
   //Light the led if the switch is activated *Probably not necessary*
@@ -409,7 +415,7 @@ void goLeft(){
     digitalWrite(led, HIGH);
 
 
-  movement.write(85); //Move left until switch
+  movement.write(94 - motorSpeed); //Move left until switch
   delay(100);
   while(digitalRead(reedSwitch) == HIGH); //Do nothing while the switch is high (active low)
 
