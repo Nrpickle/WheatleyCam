@@ -22,7 +22,7 @@ int pos = 0;    // variable to store the servo position
 int led = 11;                 //A10
 int reedSwitch = 13;          //B4
 int RECV_PIN = 10;            //C7
-int PRIVATE_PIN = 14;
+int PRIVATE_PIN = 14;         //A7
 const short tiltPin = 20;     //F1
 const short rotatePin = 21;   //F0
 const short movementPin = 19; //F4
@@ -34,8 +34,12 @@ const short leftLimit = 7;    //D2 yellow/orange
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
-byte currentPos;
+//Initial position values for sparkfun remote
+int initialPos = 1;
+int initialRotation = 90;
+int initialTilt = 90;
 
+byte currentPos;
 int currentRotation = 90;
 int currentTilt;
 
@@ -95,7 +99,8 @@ void setup()
   movement.write(94);  //Stop moving
   goRight();
   currentPos = 1;
-
+  
+  //Enable IR receiver
   irrecv.enableIRIn();
   
   Serial.begin(9600);
@@ -124,6 +129,18 @@ void loop()
       moveToPos(2);
       break;
     case 0x10EF58A7:
+      moveToPos(3);
+      break;
+      
+      
+    //Touch remote cases
+    case 0x10EF0001:
+      moveToPos(1);
+      break;
+    case 0x10EF0002:
+      moveToPos(2);
+      break;
+    case 0x10EF0003:
       moveToPos(3);
       break;
     case 0x10EF0005:
