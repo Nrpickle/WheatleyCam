@@ -110,11 +110,127 @@ void setup()
 int alt = 0;
 
 
+//loops cases overlook:
 
-
+//	1: possition 1
+//	2: possition 2
+//	3: possition 3
+//	5: unknown, need to look into
+//	6: unknown, need to look into
+//	0's: Rotates Camera
+//	5's: Tilts Camera
 
 void loop() 
 { 
+   if(Serial1.available()){
+
+    input = Serial1.read();
+    Serial.print(input);
+
+    switch(input){
+
+    case 1:
+	  moveToPos(input);
+      break;
+    case 2:
+	  moveToPos(input);
+      break;
+    case 3:
+	  moveToPos(input);
+      break;
+    case 5:
+      // NEED TO IMPLAMENT
+      break;
+    case 6:
+      // NEED TO IMPLAMENT
+      break;
+    case 10:
+	  rotateTo(input);
+      break;
+    case 15:
+      tiltTo(input);
+      break;
+    case 20:
+      rotateTo(input);
+      break;
+    case 25:
+      tiltTo(input);
+      break;
+    case 30:
+      rotateTo(input);
+      break;
+    case 35:
+      tiltTo(input);
+      break;
+    case 40:
+      rotateTo(input);
+      break; 
+    case 45:
+      tiltTo(input);
+      break;
+    case 50:
+      rotateTo(input);
+      break;
+    case 55:
+      tiltTo(input);
+      break;
+    case 60:
+      rotateTo(input);
+      break;   
+    case 65:
+      tiltTo(input);
+      break;
+    case 70:
+      rotateTo(input);
+      break;
+    case 75:
+      tiltTo(input);
+      break;
+    case 80:
+      rotateTo(input);
+      break;
+    case 85:
+      tiltTo(input);
+      break;
+    case 90:
+      rotateTo(input);
+      break;
+    case 95:
+      tiltTo(input);
+      break;
+    case 100:
+      rotateTo(input);
+      break;
+    case 105:
+      tiltTo(input);
+      break;
+    case 110:
+      rotateTo(input);
+      break;
+    case 115:
+      tiltTo(input);
+      break;
+    case 120:
+      rotateTo(input);
+      break;
+    case 130:
+      rotateTo(input);
+      break;
+    case 140:
+      rotateTo(input);
+      break;
+    case 150:
+      rotateTo(input);
+      break;
+    case 160:
+      rotateTo(input);
+      break;
+    case 170:
+      rotateTo(input);
+      break;
+
+    }
+  }
 
   if(irrecv.decode(&results)){
 
