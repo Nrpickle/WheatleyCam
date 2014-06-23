@@ -7,7 +7,7 @@
 
 //Limit switches
 //Green is white D1 Right
-//Orange is left D2 Left
+//Orange is left D0 Left
 
 #include <Servo.h> 
 #include <IRremote.h>
@@ -29,7 +29,7 @@ const short movementPin = 19; //F4
 
 
 const short rightLimit = 6;   //D1 yellow/green
-const short leftLimit = 7;    //D2 yellow/orange
+const short leftLimit = 5;    //D0 yellow/orange
 
 IRrecv irrecv(RECV_PIN);
 decode_results results;
@@ -68,7 +68,9 @@ void setup()
   tilt.attach(tiltPin); 
   rotate.attach(rotatePin);
   movement.attach(movementPin);
-
+  
+  Serial.begin(9600);
+  
   //Init
   rotate.write(90);     //Init rotation at "straight ahead"
   currentRotation = 90;
@@ -119,13 +121,13 @@ int alt = 0;
 //	6: unknown, need to look into
 //	0's: Rotates Camera
 //	5's: Tilts Camera
-
+char input;
 void loop() 
 { 
-   if(Serial1.available()){
+   if(Serial.available()){
 
-    input = Serial1.read();
-    Serial.print(input);
+    input = Serial.read();
+    //Serial.print(input);
 
     switch(input){
 
@@ -267,7 +269,7 @@ void loop()
     case 0x10EFA05F:
       tiltTo(currentTilt + 10);
       break;
-    case 0x10EF20DF
+    case 0x10EF20DF:
       rotateTo(90);
       tiltTo(90);
       break;
