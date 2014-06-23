@@ -14,9 +14,13 @@ proccessTime = 40 #Uploads webcam.jpg at xx.[processTime]  seconds
 
 import sys
 import signal
+def signal_handler(signal, frame):
+	global ftp
+	print "\nQuitting FTP Connection..."
+	ftp.quit()
+	sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
 
-
-#Uploads a file to the webserver
 def uploadFile(ftp, file):
 	ext = os.path.splitext(file)[1]
 	if ext in (".txt",".htm",".html"):
@@ -24,19 +28,6 @@ def uploadFile(ftp, file):
 	else:
 		ftp.storbinary("STOR " + file, open(file, "rb"), 1024)
 
-#Overwrites the Ctrl-C function
-#Uploads the offline picture, and quits the FTP connection
-def signal_handler(signal, frame):
-	global ftp
-	call(["cp","offline.jpeg","webcam.jpeg"])
-	uploadFile(ftp, "webcam.jpeg")
-	print "\nUploaded offline image..."
-	print "Quitting FTP Connection..."
-	ftp.quit()
-	sys.exit(0)
-signal.signal(signal.SIGINT, signal_handler)
-		
-		
 ftp = ftplib.FTP("www.nrpickle.net")
 ftp.login("u51571509-wheatley","WheatleyCam")
 
@@ -56,8 +47,6 @@ if __name__ == '__main__':
 	while count < countIter:  #TODO Remove debug
 		currentTime = time.time();
 		
-		call(["streamer","-o","webcam.jpeg"])
-		
 		while int(math.floor((currentTime*100)%100)) != proccessTime:
 			time.sleep(.005)
 			currentTime = time.time()
@@ -70,14 +59,20 @@ if __name__ == '__main__':
 		print "at " +  str(time.time()%1000)
 		print ""
 		
-		#call(["cp",str(image)+".jpg","webcam.jpg"])
-		#if image < 4:
-		#	image += 1
-		#else:
-		#	image = 1
+		call(["cp",str(image)+".jpg","webcam.jpg"])
+		if image < 4:
+			image += 1
+		else:
+			image = 1
 		
-		uploadFile(ftp, "webcam.jpeg")
+		#call(["cp", "zero", "status.txt"])
+		#uploadFile(ftp, "status.txt")
+		#print "Uploaded Zero"
+		uploadFile(ftp, "webcam.jpg")
 		print "Uploaded File"
+		#call(["cp", "one", "status.txt"])
+		#uploadFile(ftp, "status.txt")
+		#print "Uploaded One"
 		
 		#avg += time.time() - beginTime
 		#avg /= 2
