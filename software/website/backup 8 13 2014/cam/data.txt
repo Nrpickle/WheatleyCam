@@ -1,0 +1,13 @@
+Wheatley Cam data file 
+Written by Nick McComb for OSURC [mccombn@onid.orst.edu] 
+The first 10 lines of the file are reserved for documentation 
+All references to lines are (index 0) 
+Line 10: Project Name, Line 11: Current status, Line 12: Camera Position 
+10:projectName,11:status,12:camPos
+ 
+ 
+ 
+ 
+WheatleyCam
+57
+1
