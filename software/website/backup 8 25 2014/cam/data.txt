@@ -1,0 +1,15 @@
+Wheatley Cam data file 
+Written by Nick McComb for OSURC [mccombn@onid.orst.edu] 
+The first 10 lines of the file are reserved for documentation 
+All references to lines are (index 0) 
+Line: 
+10:projectName,11:status1,12:camPos,13:rotateAngle,14:tiltAngle
+
+
+
+
+WheatleyCam
+1
+1
+-30
+-40
