@@ -7,3 +7,7 @@ Current Contributors
 --------------
 * Nick McComb
 * John Zeller
+* Erik Watterson
+* Daniel Knott
+* Ryan Domres
+* Steven Gloyd 
